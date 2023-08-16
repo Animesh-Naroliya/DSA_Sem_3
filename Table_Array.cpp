@@ -37,7 +37,29 @@ void Insert_Element(int index, int value) {
     }
 }
 
-void Delete_Element(int index) {
+void Delete_Element_By_Value(int value) {
+    int found = -1;
+    for (int i = 0; i < size; i++) {
+        if (value == arr[i]) {
+            found = i;
+            break;
+        }
+    }
+    
+    if (found != -1) {
+        for (int i = found; i < size - 1; i++) {
+            arr[i] = arr[i + 1];
+        }
+        size--;
+        cout << "Element " << value << " is deleted from the array." << endl;
+        cout << "Updated array: "<<endl;
+        Display_Array();
+    } else {
+        cout << "Element not found in the array." << endl;
+    }
+}
+
+void Delete_Element_By_Index(int index) {
     if (index >= 0 && index < size) {
         for (int i = index; i < size - 1; i++) {
             arr[i] = arr[i + 1];
@@ -58,8 +80,8 @@ int Find_Location(int element) {
             return i;
         }
     }
-    cout << "Element not found in the array." << endl;
-    return -1;
+    cout << "\n\nElement not found in the array." << endl;
+    return 0;
 }
 
 int main() {
@@ -69,10 +91,11 @@ int main() {
     while (true) {
         cout << "\nMENU:" << endl;
         cout << "1. Insert a new element" << endl;
-        cout << "2. Delete an element" << endl;
-        cout << "3. Find the location of an element" << endl;
-        cout << "4. Display elements of the linear array" << endl;
-        cout << "5. Exit" << endl;
+        cout << "2. Delete an element by index" << endl;
+        cout << "3. Delete an element by value" << endl;
+        cout << "4. Find the location of an element" << endl;
+        cout << "5. Display elements of the linear array" << endl;
+        cout << "6. Exit" << endl;
         cout << "Enter your choice: ";
         cin >> choice;
 
@@ -87,17 +110,22 @@ int main() {
             case 2:
                 cout << "Enter the index to delete the element: ";
                 cin >> index;
-                Delete_Element(index);
+                Delete_Element_By_Index(index);
                 break;
             case 3:
+                cout<<"Enter the value to delete in the array: ";
+                cin >> value;
+                Delete_Element_By_Value(value);
+                break;
+            case 4:
                 cout << "Enter the element to find its location: ";
                 cin >> element;
                 Find_Location(element);
                 break;
-            case 4:
+            case 5:
                 Display_Array();
                 break;
-            case 5:
+            case 6:
                 cout << "Exiting the program." << endl;
                 return 0;
             default:
@@ -105,6 +133,5 @@ int main() {
                 break;
         }
     }
-
     return 0;
 }
