@@ -1,0 +1,41 @@
+#include <iostream>
+#include <stdio.h>
+
+using namespace std;
+int swap(int &n1, int &n2)
+{
+    int temp;
+    temp = n1;
+    n1 = n2;
+    n2 =temp;
+}
+
+int main()
+{
+    int num1, num2, arrsize;
+    cout <<"Enter the size of array : ";
+    cin >> arrsize; 
+    int arr[arrsize];
+    cout << "Enter the elements of array separated by a space : ";
+    for (int i=0;i<arrsize;i++)
+    {
+        cin >> arr[i];
+    }
+
+    cout <<"The sorted array is : ";
+    for(int i=0;i<arrsize;i++)
+    {
+        for(int j=0;j<arrsize-i;j++)
+        {
+            if(arr[j]> arr[j+1])
+            {
+                swap(arr[j], arr[j+1]);
+            }
+        }
+    }
+
+    for (int i=0;i<arrsize;i++)
+    {
+        cout<< arr[i]<<" ";
+    }
+}
