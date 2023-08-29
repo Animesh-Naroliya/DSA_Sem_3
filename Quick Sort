@@ -25,7 +25,7 @@ void QuickSort(int arr[], int low, int high)
 {
   int pivot_index = partition(arr, low, high);
   QuickSort(arr, low, pivot_index);
-  QuickSort(arr, pivot_index-1, high); 
+  QuickSort(arr, pivot_index+1, high); 
 }
 
 int main()
